@@ -2,17 +2,8 @@ const Contact = require("../models/contactModel");
 const Booking = require("../models/bookingsModel");
 
 const submitContactForm = async (req, res) => {
-  const {
-    name,
-    email,
-    phone,
-    country,
-    city,
-    wedding,
-    event,
-    message,
-    getNotify,
-  } = req.body;
+  const { name, email, phone, city, wedding, event, message, getNotify } =
+    req.body;
 
   try {
     // Step 1: Check if the same city + date already has a booking
@@ -28,7 +19,6 @@ const submitContactForm = async (req, res) => {
       name,
       email,
       phone,
-      country,
       city,
       wedding,
       event,
