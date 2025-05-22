@@ -5,6 +5,7 @@ const connectDB = require("./config/dbConnect");
 const contactRoutes = require("./routes/contactRoutes");
 const authRoutes = require("./routes/authRoutes");
 const bookRoutes = require("./routes/bookingRoutes");
+const offerRoutes = require("./routes/offerRoute");
 
 dotenv.config();
 connectDB();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api", contactRoutes);
 app.use("/api", authRoutes);
 app.use("/api", bookRoutes);
+app.use("/api", offerRoutes);
 
 // Default route
 app.get("/", (req, res) => {

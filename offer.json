@@ -1,0 +1,51 @@
+[
+    {
+      "title": "Dream Destination Wedding in Goa – Just ₹25 Lakhs!",
+      "description": "All-inclusive beach wedding package in Goa with décor, catering, 3-day accommodation for 100 guests, and entertainment. Valid till Aug 2025.",
+      "discountPercent": 20,
+      "validTill": "2025-08-31T00:00:00Z",
+      "imageUrl": "https://example.com/images/goa-wedding.jpg",
+      "destination": "goa"
+    },
+    {
+      "title": "Royal Palace Wedding in Jaipur – ₹30 Lakhs Only",
+      "description": "Get married like royalty! Book a palace in Jaipur for your big day. Package includes décor, traditional Rajasthani menu, folk performances, and stay for 150 guests.",
+      "discountPercent": 15,
+      "validTill": "2025-07-15T00:00:00Z",
+      "imageUrl": "https://example.com/images/jaipur-palace.jpg",
+      "destination": "jaipur"
+    },
+    {
+      "title": "FREE Thailand Honeymoon with Your Wedding in Udaipur",
+      "description": "Book a destination wedding in Udaipur and get a 5-day honeymoon package in Thailand absolutely FREE. Flights + stay included!",
+      "discountPercent": 0,
+      "validTill": "2025-09-30T00:00:00Z",
+      "imageUrl": "https://example.com/images/udaipur-thailand.jpg",
+      "destination": "udaipur"
+    },
+    {
+      "title": "Shimla Snow Wedding + Maldives Honeymoon Combo",
+      "description": "Have a magical snowy wedding in Shimla and chill in Maldives post-wedding! Combo package includes full wedding + 4-night honeymoon stay.",
+      "discountPercent": 10,
+      "validTill": "2025-12-20T00:00:00Z",
+      "imageUrl": "https://example.com/images/shimla-maldives.jpg",
+      "destination": "shimla"
+    },
+    {
+      "title": "Neemrana Fort Wedding – Under ₹20 Lakhs",
+      "description": "Fairytale fort wedding at Neemrana with royal welcome, heritage décor, shehnai live music & 2-night stay. Budget-friendly & stunning!",
+      "discountPercent": 18,
+      "validTill": "2025-06-30T00:00:00Z",
+      "imageUrl": "https://example.com/images/neemrana-fort.jpg",
+      "destination": "neemrana"
+    },
+    {
+      "title": "Jim Corbett Jungle Wedding + Safari Treat!",
+      "description": "Wildly romantic wedding in the lap of nature. Jim Corbett forest wedding package with 2 safari rides, jungle-themed décor & guest stays.",
+      "discountPercent": 12,
+      "validTill": "2025-11-15T00:00:00Z",
+      "imageUrl": "https://example.com/images/corbett-wedding.jpg",
+      "destination": "jim-corbett"
+    }
+  ]
+  
