@@ -10,6 +10,7 @@ const contactSchema = new mongoose.Schema(
     message: String,
     getNotify: Boolean,
     event: String,
+    followUp: Date,
     status: { type: String, default: "pending" },
   },
   {
