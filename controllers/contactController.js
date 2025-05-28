@@ -114,8 +114,17 @@ const updateContactStatus = async (req, res) => {
 };
 
 const submitContactForm = async (req, res) => {
-  const { name, email, phone, city, wedding, event, message, getNotify } =
-    req.body;
+  const {
+    name,
+    email,
+    phone,
+    city,
+    wedding,
+    event,
+    message,
+    getNotify,
+    offer,
+  } = req.body;
 
   try {
     // Step 1: Check if the same city + date already has a booking
@@ -136,6 +145,7 @@ const submitContactForm = async (req, res) => {
       event,
       message,
       getNotify,
+      offer,
     });
 
     await newBooking.save();

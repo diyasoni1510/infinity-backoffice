@@ -11,6 +11,7 @@ const contactSchema = new mongoose.Schema(
     getNotify: Boolean,
     event: String,
     followUp: Date,
+    offer: { type: String, default: "none" },
     status: { type: String, default: "pending" },
   },
   {
