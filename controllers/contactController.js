@@ -113,6 +113,29 @@ const updateContactStatus = async (req, res) => {
   }
 };
 
+// const getContactWithStatus = async (req, res) => {
+//   const { status } = req.params;
+// };
+
+const getContactWithStatus = async (req, res) => {
+  const { status } = req.params;
+
+  try {
+    const contacts = await Contact.find({ status });
+
+    if (contacts.length === 0) {
+      return res
+        .status(404)
+        .json({ message: `No contacts found with status: ${status}` });
+    }
+
+    res.status(200).json({ success: true, data: contacts });
+  } catch (error) {
+    console.error("Error fetching contacts by status:", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
 const submitContactForm = async (req, res) => {
   const {
     name,
@@ -241,4 +264,5 @@ module.exports = {
   getContacts,
   updateContactStatus,
   updateFollowUpDate,
+  getContactWithStatus,
 };
