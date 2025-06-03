@@ -117,11 +117,60 @@ const updateContactStatus = async (req, res) => {
 //   const { status } = req.params;
 // };
 
+// const getContactWithStatus = async (req, res) => {
+//   const { status } = req.params;
+
+//   try {
+//     const contacts = await Contact.find({ status });
+
+//     if (contacts.length === 0) {
+//       return res
+//         .status(404)
+//         .json({ message: `No contacts found with status: ${status}` });
+//     }
+
+//     res.status(200).json({ success: true, data: contacts });
+//   } catch (error) {
+//     console.error("Error fetching contacts by status:", error.message);
+//     res.status(500).json({ success: false, message: "Server Error" });
+//   }
+// };
+
 const getContactWithStatus = async (req, res) => {
   const { status } = req.params;
+  const { date, page = 1, limit = 10 } = req.query;
 
   try {
-    const contacts = await Contact.find({ status });
+    const query = { status };
+
+    // Date filter logic
+    if (date === "today") {
+      const start = new Date();
+      start.setHours(0, 0, 0, 0);
+      const end = new Date();
+      end.setHours(23, 59, 59, 999);
+      query.createdAt = { $gte: start, $lte: end };
+    } else if (date) {
+      const specificDate = new Date(date);
+      if (isNaN(specificDate)) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Invalid date format" });
+      }
+      const start = new Date(specificDate.setHours(0, 0, 0, 0));
+      const end = new Date(specificDate.setHours(23, 59, 59, 999));
+      query.createdAt = { $gte: start, $lte: end };
+    }
+
+    // Pagination calculation
+    const skip = (page - 1) * limit;
+
+    const contacts = await Contact.find(query)
+      .sort({ createdAt: -1 }) // latest first
+      .skip(skip)
+      .limit(parseInt(limit));
+
+    const total = await Contact.countDocuments(query);
 
     if (contacts.length === 0) {
       return res
@@ -129,7 +178,14 @@ const getContactWithStatus = async (req, res) => {
         .json({ message: `No contacts found with status: ${status}` });
     }
 
-    res.status(200).json({ success: true, data: contacts });
+    res.status(200).json({
+      success: true,
+      data: contacts,
+      page: parseInt(page),
+      limit: parseInt(limit),
+      totalPages: Math.ceil(total / limit),
+      totalItems: total,
+    });
   } catch (error) {
     console.error("Error fetching contacts by status:", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
