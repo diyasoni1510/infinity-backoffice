@@ -13,6 +13,11 @@ const vendorSchema = new mongoose.Schema({
   about: String,
   profileImage: String,
   gallery: [String],
+  subService: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SubService",
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

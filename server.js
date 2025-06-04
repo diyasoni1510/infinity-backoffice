@@ -8,6 +8,7 @@ const bookRoutes = require("./routes/bookingRoutes");
 const offerRoutes = require("./routes/offerRoute");
 const salePersonRoutes = require("./routes/salePerson");
 const vendorRoutes = require("./routes/vendor");
+const serviceRoute = require("./routes/serviceRoute");
 
 dotenv.config();
 connectDB();
@@ -24,6 +25,7 @@ app.use("/api", bookRoutes);
 app.use("/api", offerRoutes);
 app.use("/api/sales", salePersonRoutes);
 app.use("/api/vendor", vendorRoutes);
+app.use("/api/service", serviceRoute);
 
 // Default route
 app.get("/", (req, res) => {
