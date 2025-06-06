@@ -6,7 +6,6 @@ const vendorSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  category: { type: String, required: true }, // e.g., "Photographer"
   city: { type: String, required: true },
   pricingStart: Number,
   pricingEnd: Number,
@@ -18,6 +17,7 @@ const vendorSchema = new mongoose.Schema({
     ref: "SubService",
     required: true,
   },
+  rating: String,
   createdAt: { type: Date, default: Date.now },
 });
 

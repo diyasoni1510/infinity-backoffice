@@ -1,7 +1,6 @@
 const vendor = require("../models/vendor");
 const bcrypt = require("bcrypt");
 
-// POST /api/vendors/register
 const registerVendor = async (req, res) => {
   try {
     const {
@@ -15,6 +14,7 @@ const registerVendor = async (req, res) => {
       pricingStart,
       pricingEnd,
       about,
+      gallery,
     } = req.body;
 
     // Check if already registered
@@ -31,11 +31,12 @@ const registerVendor = async (req, res) => {
       email,
       phone,
       password: hashedPassword,
-      category,
+      subService: category,
       city,
       pricingStart,
       pricingEnd,
       about,
+      gallery,
     });
 
     await newVendor.save();
@@ -48,4 +49,22 @@ const registerVendor = async (req, res) => {
   }
 };
 
-module.exports = { registerVendor };
+const getVendors = async (req, res) => {
+  try {
+    const Vendors = await vendor.find();
+
+    if (!Vendors) {
+      return res.status(400).json({ message: "no vendors exist" });
+    }
+
+    res.status(201).json({
+      message: "sub service fetched successfully.",
+      vendors: Vendors,
+    });
+  } catch (error) {
+    console.error("Error creating vendors:", error.message);
+    res.status(500).json({ message: "Server error. Try again later." });
+  }
+};
+
+module.exports = { registerVendor, getVendors };

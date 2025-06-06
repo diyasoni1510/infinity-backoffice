@@ -1,0 +1,287 @@
+[
+    {
+      "name": "Royal Banquets",
+      "ownerName": "Owner 1",
+      "email": "vendor1@example.com",
+      "phone": "9876500001",
+      "password": "vendor123",
+      "city": "Hyderabad",
+      "pricingStart": 7366,
+      "pricingEnd": 22975,
+      "about": "Royal Banquets is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/1.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event0",
+        "https://source.unsplash.com/random/800x600?venue0"
+      ],
+      "subService": "6841700b308cc7e30082a706",
+      "rating": "4.7",
+      "createdAt": "2025-06-06T05:11:57.546019"
+    },
+    {
+      "name": "Flora Decorators",
+      "ownerName": "Owner 2",
+      "email": "vendor2@example.com",
+      "phone": "9876500002",
+      "password": "vendor123",
+      "city": "Chennai",
+      "pricingStart": 7075,
+      "pricingEnd": 27961,
+      "about": "Flora Decorators is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/2.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event1",
+        "https://source.unsplash.com/random/800x600?venue1"
+      ],
+      "subService": "684170b1308cc7e30082a721",
+      "rating": "4.6",
+      "createdAt": "2025-06-06T05:11:57.546039"
+    },
+    {
+      "name": "DJ Dhamaka",
+      "ownerName": "Owner 3",
+      "email": "vendor3@example.com",
+      "phone": "9876500003",
+      "password": "vendor123",
+      "city": "Bangalore",
+      "pricingStart": 2440,
+      "pricingEnd": 23754,
+      "about": "DJ Dhamaka is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/3.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event2",
+        "https://source.unsplash.com/random/800x600?venue2"
+      ],
+      "subService": "68417502308cc7e30082a764",
+      "rating": "4.3",
+      "createdAt": "2025-06-06T05:11:57.546051"
+    },
+    {
+      "name": "Shutter Shots",
+      "ownerName": "Owner 4",
+      "email": "vendor4@example.com",
+      "phone": "9876500004",
+      "password": "vendor123",
+      "city": "Mumbai",
+      "pricingStart": 3271,
+      "pricingEnd": 19397,
+      "about": "Shutter Shots is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/4.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event3",
+        "https://source.unsplash.com/random/800x600?venue3"
+      ],
+      "subService": "68417532308cc7e30082a76a",
+      "rating": "4.2",
+      "createdAt": "2025-06-06T05:11:57.546076"
+    },
+    {
+      "name": "Bridal Glamor",
+      "ownerName": "Owner 5",
+      "email": "vendor5@example.com",
+      "phone": "9876500005",
+      "password": "vendor123",
+      "city": "Hyderabad",
+      "pricingStart": 4976,
+      "pricingEnd": 14524,
+      "about": "Bridal Glamor is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/5.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event4",
+        "https://source.unsplash.com/random/800x600?venue4"
+      ],
+      "subService": "6841736c308cc7e30082a748",
+      "rating": "4.3",
+      "createdAt": "2025-06-06T05:11:57.546085"
+    },
+    {
+      "name": "Foodie's Delight",
+      "ownerName": "Owner 6",
+      "email": "vendor6@example.com",
+      "phone": "9876500006",
+      "password": "vendor123",
+      "city": "Kolkata",
+      "pricingStart": 5879,
+      "pricingEnd": 19483,
+      "about": "Foodie's Delight is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/6.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event5",
+        "https://source.unsplash.com/random/800x600?venue5"
+      ],
+      "subService": "6841726b308cc7e30082a733",
+      "rating": "4.6",
+      "createdAt": "2025-06-06T05:11:57.546093"
+    },
+    {
+      "name": "Event Fiesta",
+      "ownerName": "Owner 7",
+      "email": "vendor7@example.com",
+      "phone": "9876500007",
+      "password": "vendor123",
+      "city": "Kolkata",
+      "pricingStart": 5177,
+      "pricingEnd": 23937,
+      "about": "Event Fiesta is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/7.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event6",
+        "https://source.unsplash.com/random/800x600?venue6"
+      ],
+      "subService": "68417212308cc7e30082a72a",
+      "rating": "4.7",
+      "createdAt": "2025-06-06T05:11:57.546101"
+    },
+    {
+      "name": "The Wedding Cafe",
+      "ownerName": "Owner 8",
+      "email": "vendor8@example.com",
+      "phone": "9876500008",
+      "password": "vendor123",
+      "city": "Mumbai",
+      "pricingStart": 7520,
+      "pricingEnd": 15956,
+      "about": "The Wedding Cafe is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/8.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event7",
+        "https://source.unsplash.com/random/800x600?venue7"
+      ],
+      "subService": "68417050308cc7e30082a715",
+      "rating": "4.5",
+      "createdAt": "2025-06-06T05:11:57.546116"
+    },
+    {
+      "name": "Baraati Beats",
+      "ownerName": "Owner 9",
+      "email": "vendor9@example.com",
+      "phone": "9876500009",
+      "password": "vendor123",
+      "city": "Jaipur",
+      "pricingStart": 2569,
+      "pricingEnd": 17968,
+      "about": "Baraati Beats is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/9.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event8",
+        "https://source.unsplash.com/random/800x600?venue8"
+      ],
+      "subService": "684178c7308cc7e30082a7af",
+      "rating": "4.6",
+      "createdAt": "2025-06-06T05:11:57.546131"
+    },
+    {
+      "name": "Sufi Vibes",
+      "ownerName": "Owner 10",
+      "email": "vendor10@example.com",
+      "phone": "9876500010",
+      "password": "vendor123",
+      "city": "Chennai",
+      "pricingStart": 4184,
+      "pricingEnd": 24873,
+      "about": "Sufi Vibes is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/10.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event9",
+        "https://source.unsplash.com/random/800x600?venue9"
+      ],
+      "subService": "6841746c308cc7e30082a75b",
+      "rating": "4.2",
+      "createdAt": "2025-06-06T05:11:57.546140"
+    },
+    {
+      "name": "The Glam Squad",
+      "ownerName": "Owner 11",
+      "email": "vendor11@example.com",
+      "phone": "9876500011",
+      "password": "vendor123",
+      "city": "Bangalore",
+      "pricingStart": 6904,
+      "pricingEnd": 29974,
+      "about": "The Glam Squad is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/11.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event10",
+        "https://source.unsplash.com/random/800x600?venue10"
+      ],
+      "subService": "68417387308cc7e30082a74b",
+      "rating": "4.6",
+      "createdAt": "2025-06-06T05:11:57.546146"
+    },
+    {
+      "name": "Street Chaska",
+      "ownerName": "Owner 12",
+      "email": "vendor12@example.com",
+      "phone": "9876500012",
+      "password": "vendor123",
+      "city": "Chennai",
+      "pricingStart": 7623,
+      "pricingEnd": 10239,
+      "about": "Street Chaska is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/12.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event11",
+        "https://source.unsplash.com/random/800x600?venue11"
+      ],
+      "subService": "6841730d308cc7e30082a73f",
+      "rating": "4.4",
+      "createdAt": "2025-06-06T05:11:57.546152"
+    },
+    {
+      "name": "Cine Frames",
+      "ownerName": "Owner 13",
+      "email": "vendor13@example.com",
+      "phone": "9876500013",
+      "password": "vendor123",
+      "city": "Chennai",
+      "pricingStart": 6940,
+      "pricingEnd": 26563,
+      "about": "Cine Frames is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/13.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event12",
+        "https://source.unsplash.com/random/800x600?venue12"
+      ],
+      "subService": "6841754f308cc7e30082a76d",
+      "rating": "4.5",
+      "createdAt": "2025-06-06T05:11:57.546159"
+    },
+    {
+      "name": "Rooftop Dreamz",
+      "ownerName": "Owner 14",
+      "email": "vendor14@example.com",
+      "phone": "9876500014",
+      "password": "vendor123",
+      "city": "Kolkata",
+      "pricingStart": 3315,
+      "pricingEnd": 12874,
+      "about": "Rooftop Dreamz is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/14.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event13",
+        "https://source.unsplash.com/random/800x600?venue13"
+      ],
+      "subService": "68417043308cc7e30082a712",
+      "rating": "4.8",
+      "createdAt": "2025-06-06T05:11:57.546165"
+    },
+    {
+      "name": "Invites & Ink",
+      "ownerName": "Owner 15",
+      "email": "vendor15@example.com",
+      "phone": "9876500015",
+      "password": "vendor123",
+      "city": "Jaipur",
+      "pricingStart": 2322,
+      "pricingEnd": 21939,
+      "about": "Invites & Ink is known for top-class event services.",
+      "profileImage": "https://randomuser.me/api/portraits/men/15.jpg",
+      "gallery": [
+        "https://source.unsplash.com/random/800x600?event14",
+        "https://source.unsplash.com/random/800x600?venue14"
+      ],
+      "subService": "68417834308cc7e30082a79d",
+      "rating": "4.2",
+      "createdAt": "2025-06-06T05:11:57.546171"
+    }
+  ]
