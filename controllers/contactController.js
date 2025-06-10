@@ -222,19 +222,10 @@ const submitContactForm = async (req, res) => {
 
     await newBooking.save();
 
-    // Step 3: Return different response based on availability
-    if (existingBooking) {
-      return res.status(200).json({
-        status: "warning",
-        message:
-          "We’ve received your request, but the selected date in this city might be unavailable.",
-      });
-    } else {
-      return res.status(200).json({
-        status: "success",
-        message: "Thank you for contacting us! We’ll reach out to you soon.",
-      });
-    }
+    return res.status(200).json({
+      status: "success",
+      message: "Thank you for contacting us! We’ll reach out to you soon.",
+    });
   } catch (err) {
     console.error("Error saving contact:", err);
     res.status(500).json({ error: "Internal server error" });
