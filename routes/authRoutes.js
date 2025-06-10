@@ -29,29 +29,95 @@ const generateOtp = () =>
 //   res.json({ msg: "OTP sent" });
 // });
 
+// router.post("/send-otp", async (req, res) => {
+//   const { phone } = req.body;
+//   const otp = Math.floor(100000 + Math.random() * 900000);
+
+//   const expires = Date.now() + 5 * 60 * 1000;
+//   otpMap.set(phone, { otp, expires });
+
+//   try {
+//     const apiKey = process.env.TWOFACTOR_API_KEY;
+//     const response = await axios.get(
+//       `https://2factor.in/API/V1/${apiKey}/SMS/+91${phone}/${otp}/OTP1`
+//     );
+
+//     if (response.data.Status === "Success") {
+//       res.json({ msg: "OTP sent" });
+//     } else {
+//       res
+//         .status(400)
+//         .json({ msg: "Failed to send OTP", reason: response.data.Details });
+//     }
+//   } catch (err) {
+//     console.error("OTP Send Failed:", err);
+//     res.status(500).json({ msg: "Server Error in OTP send" });
+//   }
+// });
+
+// const otpMap = new Map(); // You can move this to a better place depending on your architecture
+
+// router.post("/send-otp", async (req, res) => {
+//   const { phone } = req.body;
+
+//   // Basic validation
+//   if (!phone || !/^\d{10}$/.test(phone)) {
+//     return res.status(400).json({ msg: "Invalid phone number" });
+//   }
+
+//   const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
+//   const expires = Date.now() + 5 * 60 * 1000; // expires in 5 mins
+//   otpMap.set(phone, { otp, expires });
+
+//   try {
+//     const apiKey = process.env.TWOFACTOR_API_KEY;
+//     if (!apiKey) {
+//       return res.status(500).json({ msg: "API Key missing" });
+//     }
+
+//     const message = `Your OTP is ${otp}`; // Optional: Custom message for some providers
+//     const url = `https://2factor.in/API/V1/${apiKey}/SMS/+91${phone}/${otp}/BookMySquad`;
+
+//     const response = await axios.get(url);
+
+//     console.log("response", response);
+
+//     if (response.data.Status === "Success") {
+//       return res.json({ msg: "OTP sent successfully" });
+//     } else {
+//       return res.status(400).json({
+//         msg: "Failed to send OTP",
+//         reason: response.data.Details || "Unknown error from SMS provider",
+//       });
+//     }
+//   } catch (err) {
+//     console.error("OTP Send Failed:", err.message);
+//     return res.status(500).json({ msg: "Internal Server Error" });
+//   }
+// });
+
 router.post("/send-otp", async (req, res) => {
   const { phone } = req.body;
-  const otp = Math.floor(100000 + Math.random() * 900000);
-
-  const expires = Date.now() + 5 * 60 * 1000;
-  otpMap.set(phone, { otp, expires });
-
+  if (!phone || !/^\d{10}$/.test(phone)) {
+    return res.status(400).json({ msg: "Invalid phone number" });
+  }
   try {
     const apiKey = process.env.TWOFACTOR_API_KEY;
-    const response = await axios.get(
-      `https://2factor.in/API/V1/${apiKey}/SMS/+91${phone}/${otp}/OTP1`
+    const resp = await axios.get(
+      `https://2factor.in/API/V1/${apiKey}/SMS/+91${phone}/AUTOGEN`
     );
-
-    if (response.data.Status === "Success") {
-      res.json({ msg: "OTP sent" });
-    } else {
-      res
-        .status(400)
-        .json({ msg: "Failed to send OTP", reason: response.data.Details });
+    if (resp.data.Status === "Success") {
+      const sessionId = resp.data.Details;
+      // Save sessionId if needed to verify later
+      otpMap.set(phone, { sessionId, expires: Date.now() + 5 * 60 * 1000 });
+      return res.json({ msg: "OTP sent", sessionId });
     }
+    return res
+      .status(400)
+      .json({ msg: "Send failed", reason: resp.data.Details });
   } catch (err) {
-    console.error("OTP Send Failed:", err);
-    res.status(500).json({ msg: "Server Error in OTP send" });
+    console.error("Send OTP err:", err.response?.data || err.message);
+    return res.status(500).json({ msg: "Server error" });
   }
 });
 

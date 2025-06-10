@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const contactSchema = new mongoose.Schema(
+const leadSchema = new mongoose.Schema(
   {
     name: String,
     email: String,
-    phone: String,
+    phone: { type: String, required: true },
     city: String,
     wedding: Date,
     message: String,
@@ -13,16 +13,11 @@ const contactSchema = new mongoose.Schema(
     followUp: Date,
     offer: { type: String, default: "none" },
     status: { type: String, default: "pending" },
-    remarks: [
-      {
-        message: { type: String, required: true },
-        addedBy: { type: String, required: true },
-      },
-    ],
+    noOfRep: Number,
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Contact", contactSchema);
+module.exports = mongoose.model("lead", leadSchema);

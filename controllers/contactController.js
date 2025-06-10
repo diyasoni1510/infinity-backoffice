@@ -1,5 +1,4 @@
 const Contact = require("../models/contactModel");
-const Booking = require("../models/bookingsModel");
 
 const moment = require("moment"); // npm install moment
 
@@ -207,12 +206,6 @@ const submitContactForm = async (req, res) => {
 
   try {
     // Step 1: Check if the same city + date already has a booking
-    const existingBooking = await Booking.findOne({
-      city: city,
-      // wedding: new Date(wedding),
-    });
-
-    console.log("existingBooking", existingBooking);
 
     // Step 2: Save the new booking regardless
     const newBooking = new Contact({
@@ -315,10 +308,62 @@ const updateFollowUpDate = async (req, res) => {
   }
 };
 
+const addRemarkToContact = async (req, res) => {
+  try {
+    const { contactId } = req.params; // assuming contact ID comes from route
+    const { message, addedBy } = req.body;
+
+    if (!message || !addedBy) {
+      return res
+        .status(400)
+        .json({ error: "Message and addedBy are required." });
+    }
+
+    const contact = await Contact.findById(contactId);
+    if (!contact) {
+      return res.status(404).json({ error: "Contact not found." });
+    }
+
+    // Push new remark
+    contact.remarks.push({ message, addedBy });
+
+    await contact.save();
+
+    res.status(200).json({ message: "Remark added successfully.", contact });
+  } catch (error) {
+    console.error("Error adding remark:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
+const getRemark = async (req, res) => {
+  try {
+    const { contactId } = req.params; // assuming contact ID comes from route
+
+    if (!contactId) {
+      return res.status(400).json({ error: "contactId are required." });
+    }
+
+    const contact = await Contact.findById(contactId);
+    if (!contact) {
+      return res.status(404).json({ error: "Contact not found." });
+    }
+
+    const remarks = contact.remarks;
+
+    res.status(200).json({ message: "Remark fetched successfully.", remarks });
+  } catch (error) {
+    console.error("Error adding remark:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
 module.exports = {
   submitContactForm,
   getContacts,
   updateContactStatus,
   updateFollowUpDate,
   getContactWithStatus,
+  addRemarkToContact,
+  getRemark,
 };

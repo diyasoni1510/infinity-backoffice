@@ -7,6 +7,12 @@ const RegisterSalePerson = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    // Check if a salesperson with this email already exists
+    const existingSalesperson = await Salesperson.findOne({ email });
+    if (existingSalesperson) {
+      return res.status(409).json({ message: "Email already registered" }); // 409 Conflict
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const salesperson = new Salesperson({
@@ -17,7 +23,7 @@ const RegisterSalePerson = async (req, res) => {
 
     await salesperson.save();
 
-    res.status(201).json({ message: "Salesperson created" });
+    res.status(201).json({ message: "Salesperson created successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -26,10 +32,14 @@ const RegisterSalePerson = async (req, res) => {
 const loginSalePerson = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await Salesperson.findOne({ email });
+  // Exclude the 'password' field from the retrieved user object
+  const user = await Salesperson.findOne({ email }).select("-password");
   if (!user) return res.status(404).json({ msg: "User not found" });
 
-  const isMatch = await bcrypt.compare(password, user.password);
+  // You'll need to fetch the user WITH the password for comparison, then fetch again or manually delete
+  // A common pattern is to fetch with password, compare, then create a new object without password for the response
+  const userWithPassword = await Salesperson.findOne({ email });
+  const isMatch = await bcrypt.compare(password, userWithPassword.password);
   if (!isMatch) return res.status(400).json({ msg: "Wrong password" });
 
   const token = jwt.sign(
@@ -40,62 +50,60 @@ const loginSalePerson = async (req, res) => {
     }
   );
 
-  res.json({ token, user });
+  res.json({ user }); // Now 'user' will not contain the password
 };
 
-const RegisterSalePerson2 = async (req, res) => {
-  try {
-    const { name, email, password } = req.query;
+// const RegisterSalePerson2 = async (req, res) => {
+//   try {
+//     const { name, email, password } = req.query;
 
-    if (!name || !email || !password) {
-      return res.status(400).json({ msg: "All fields are required" });
-    }
+//     if (!name || !email || !password) {
+//       return res.status(400).json({ msg: "All fields are required" });
+//     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const salesperson = new Salesperson({
-      name,
-      email,
-      password: hashedPassword,
-    });
+//     const salesperson = new Salesperson({
+//       name,
+//       email,
+//       password: hashedPassword,
+//     });
 
-    await salesperson.save();
+//     await salesperson.save();
 
-    res.status(201).json({ message: "Salesperson created" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+//     res.status(201).json({ message: "Salesperson created" });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
 
-const loginSalePerson2 = async (req, res) => {
-  try {
-    const { email, password } = req.query;
+// const loginSalePerson2 = async (req, res) => {
+//   try {
+//     const { email, password } = req.query;
 
-    if (!email || !password) {
-      return res.status(400).json({ msg: "Email & Password required" });
-    }
+//     if (!email || !password) {
+//       return res.status(400).json({ msg: "Email & Password required" });
+//     }
 
-    const user = await Salesperson.findOne({ email });
-    if (!user) return res.status(404).json({ msg: "User not found" });
+//     const user = await Salesperson.findOne({ email });
+//     if (!user) return res.status(404).json({ msg: "User not found" });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Wrong password" });
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) return res.status(400).json({ msg: "Wrong password" });
 
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+//     const token = jwt.sign(
+//       { id: user._id, role: user.role },
+//       process.env.JWT_SECRET,
+//       { expiresIn: "7d" }
+//     );
 
-    res.json({ token, user });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+//     res.json({ token, user });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
 
 module.exports = {
   RegisterSalePerson,
   loginSalePerson,
-  RegisterSalePerson2,
-  loginSalePerson2,
 };

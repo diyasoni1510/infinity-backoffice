@@ -4,12 +4,13 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/dbConnect");
 const contactRoutes = require("./routes/contactRoutes");
 const authRoutes = require("./routes/authRoutes");
-const bookRoutes = require("./routes/bookingRoutes");
 const offerRoutes = require("./routes/offerRoute");
 const salePersonRoutes = require("./routes/salePerson");
 const vendorRoutes = require("./routes/vendor");
 const serviceRoute = require("./routes/serviceRoute");
 const subServiceRoute = require("./routes/subService");
+const leadRoute = require("./routes/leadRoutes");
+const bannerRoute = require("./routes/bannerRoute");
 
 dotenv.config();
 connectDB();
@@ -22,12 +23,13 @@ app.use(express.json());
 // Routes
 app.use("/api", contactRoutes);
 app.use("/api", authRoutes);
-app.use("/api", bookRoutes);
 app.use("/api", offerRoutes);
 app.use("/api/sales", salePersonRoutes);
 app.use("/api/vendor", vendorRoutes);
 app.use("/api/service", serviceRoute);
 app.use("/api/sub-service", subServiceRoute);
+app.use("/api/lead", leadRoute);
+app.use("/api/banner", bannerRoute);
 
 // Default route
 app.get("/", (req, res) => {
