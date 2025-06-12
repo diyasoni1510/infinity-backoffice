@@ -301,7 +301,7 @@ const updateFollowUpDate = async (req, res) => {
 
 const addRemarkToContact = async (req, res) => {
   try {
-    const { contactId } = req.params; // assuming contact ID comes from route
+    const { contactId } = req.params;
     const { message, addedBy } = req.body;
 
     if (!message || !addedBy) {
@@ -317,6 +317,11 @@ const addRemarkToContact = async (req, res) => {
 
     // Push new remark
     contact.remarks.push({ message, addedBy });
+
+    // Change status from "pending" to "ongoing"
+    if (contact.status === "pending") {
+      contact.status = "ongoing";
+    }
 
     await contact.save();
 
