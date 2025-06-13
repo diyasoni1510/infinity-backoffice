@@ -70,10 +70,9 @@ const getContacts = async (req, res) => {
 };
 
 const VALID_TRANSITIONS = {
-  pending: ["ongoing"],
+  pending: ["ongoing", "rejected", "completed"],
   ongoing: ["rejected", "completed"],
-  rejected: ["ongoing"],
-  completed: ["ongoing"],
+  rejected: ["ongoing", "completed"],
 };
 
 const updateContactStatus = async (req, res) => {

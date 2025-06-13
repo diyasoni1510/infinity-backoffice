@@ -132,10 +132,13 @@ const getVendorsBySubService = async (req, res) => {
     const serviceId = existingSubService._id;
     console.log("Matched SubService ID:", serviceId);
 
-    const vendors = await vendor.find({ subService: serviceId });
-    console.log("Fetched Vendors:", vendors.length);
+    const vendors = await vendor.find({
+      subService: serviceId,
+    });
 
-    if (!vendors || vendors.length === 0) {
+    console.log("vendors", vendors);
+
+    if (!vendors) {
       return res
         .status(404)
         .json({ message: "No vendors found for this sub-service." });

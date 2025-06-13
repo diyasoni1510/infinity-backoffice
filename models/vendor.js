@@ -12,11 +12,13 @@ const vendorSchema = new mongoose.Schema({
   about: String,
   profileImage: String,
   gallery: [String],
+
+  // 👇 This is the fix
   subService: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "SubService",
-    required: true,
+    ref: "subService", // optional but helpful if you want to populate later
   },
+
   rating: String,
   createdAt: { type: Date, default: Date.now },
 });
