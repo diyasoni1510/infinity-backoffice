@@ -2,8 +2,9 @@ const vendor = require("../models/vendor");
 const bcrypt = require("bcrypt");
 // const { ObjectId } = require("mongoose").Types;
 const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
+// const ObjectId = mongoose.Types.ObjectId;
 const subService = require("../models/subService");
+const service = require("../models/service");
 
 const registerVendor = async (req, res) => {
   try {
@@ -154,6 +155,65 @@ const getVendorsBySubService = async (req, res) => {
   }
 };
 
-module.exports = { getVendorsBySubService };
+// const getVendorsByService = async (req, res) => {
+//   try {
+//     const { serviceName } = req.params;
+//     const { type, city } = req.query;
 
-module.exports = { registerVendor, getVendors, getVendorsBySubService };
+//     console.log("serviceName", serviceName);
+
+//     // Step 1: Find the service by name
+//     const existingService = await service.findOne({ name: serviceName });
+//     if (!existingService) {
+//       return res.status(404).json({ message: "Service not found" });
+//     }
+
+//     let subServiceIds = [];
+
+//     // Step 2: If type is given, find subservice with that name under the same service
+//     if (type) {
+//       const matchedSub = await subService.findOne({
+//         name: type,
+//         service: existingService._id,
+//       });
+
+//       if (!matchedSub) {
+//         return res
+//           .status(404)
+//           .json({ message: "SubService not found for this service" });
+//       }
+
+//       subServiceIds.push(matchedSub._id);
+//     } else {
+//       // If no type given, fetch all subservices under the service
+//       const allSub = await subService.find({ service: existingService._id });
+//       subServiceIds = allSub.map((sub) => sub._id);
+//     }
+
+//     // Step 3: Vendor query build
+//     const vendorQuery = {
+//       subService: { $in: subServiceIds },
+//     };
+
+//     if (city) {
+//       vendorQuery.city = city;
+//     }
+
+//     const vendors = await vendor.find(vendorQuery).populate("subService");
+
+//     return res.status(200).json({
+//       message: "Vendors fetched successfully",
+//       data: vendors,
+//     });
+//   } catch (error) {
+//     console.error("Error fetching vendors:", error);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// };
+
+module.exports = {
+  registerVendor,
+  getVendors,
+  getVendorsBySubService,
+  // getVendorsByService,
+};

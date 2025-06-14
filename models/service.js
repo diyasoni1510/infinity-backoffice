@@ -1,5 +1,5 @@
 // models/Service.js
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const serviceSchema = new mongoose.Schema(
   {
@@ -10,4 +10,5 @@ const serviceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Service", serviceSchema);
+// export default mongoose.model("Service", serviceSchema);
+module.exports = mongoose.model("Service", serviceSchema);

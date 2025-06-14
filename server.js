@@ -11,6 +11,7 @@ const serviceRoute = require("./routes/serviceRoute");
 const subServiceRoute = require("./routes/subService");
 const leadRoute = require("./routes/leadRoutes");
 const bannerRoute = require("./routes/bannerRoute");
+const exclusiveRoute = require("./routes/exclusive");
 
 dotenv.config();
 connectDB();
@@ -30,6 +31,7 @@ app.use("/api/service", serviceRoute);
 app.use("/api/sub-service", subServiceRoute);
 app.use("/api/lead", leadRoute);
 app.use("/api/banner", bannerRoute);
+app.use("/api/exclusive", exclusiveRoute);
 
 // Default route
 app.get("/", (req, res) => {
