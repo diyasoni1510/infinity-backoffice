@@ -1,5 +1,3 @@
-// models/SubService.js
-// import mongoose from "mongoose";
 const mongoose = require("mongoose");
 
 const subServiceSchema = new mongoose.Schema(
@@ -16,5 +14,4 @@ const subServiceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// export default mongoose.model("SubService", subServiceSchema);
 module.exports = mongoose.model("SubService", subServiceSchema);

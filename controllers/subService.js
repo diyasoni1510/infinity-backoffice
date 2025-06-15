@@ -1,6 +1,5 @@
-import subService from "../models/subService.js";
+import subService from "../models/SubService.js";
 
-// Create a new subService
 export const createSubService = async (req, res) => {
   try {
     const { name, imageUrl, description, service } = req.body;

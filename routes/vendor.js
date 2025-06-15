@@ -11,6 +11,6 @@ const router = express.Router();
 router.post("/register", registerVendor);
 router.get("/", getVendors);
 router.get("/service-vendors", getVendorsBySubService);
-// router.get("/:serviceName", getVendorsByService);
+router.get("/:serviceName", getVendorsByService);
 
 module.exports = router;

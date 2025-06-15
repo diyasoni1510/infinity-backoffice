@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 // const { ObjectId } = require("mongoose").Types;
 const mongoose = require("mongoose");
 // const ObjectId = mongoose.Types.ObjectId;
-const subService = require("../models/subService");
+const subService = require("../models/SubService.js");
 const service = require("../models/service");
 
 const registerVendor = async (req, res) => {
@@ -155,65 +155,71 @@ const getVendorsBySubService = async (req, res) => {
   }
 };
 
-// const getVendorsByService = async (req, res) => {
-//   try {
-//     const { serviceName } = req.params;
-//     const { type, city } = req.query;
+const getVendorsByService = async (req, res) => {
+  try {
+    const { serviceName } = req.params;
+    const { type, city } = req.query;
 
-//     console.log("serviceName", serviceName);
+    console.log("serviceName", serviceName);
 
-//     // Step 1: Find the service by name
-//     const existingService = await service.findOne({ name: serviceName });
-//     if (!existingService) {
-//       return res.status(404).json({ message: "Service not found" });
-//     }
+    // Step 1: Find the service by name
+    const existingService = await service.findOne({ name: serviceName });
+    if (!existingService) {
+      return res.status(404).json({ message: "Service not found" });
+    }
 
-//     let subServiceIds = [];
+    console.log("existingService", existingService);
 
-//     // Step 2: If type is given, find subservice with that name under the same service
-//     if (type) {
-//       const matchedSub = await subService.findOne({
-//         name: type,
-//         service: existingService._id,
-//       });
+    let subServiceIds = [];
 
-//       if (!matchedSub) {
-//         return res
-//           .status(404)
-//           .json({ message: "SubService not found for this service" });
-//       }
+    // Step 2: If type is given, find subservice with that name under the same service
+    if (type) {
+      const matchedSub = await subService.findOne({
+        name: type,
+        service: existingService._id,
+      });
 
-//       subServiceIds.push(matchedSub._id);
-//     } else {
-//       // If no type given, fetch all subservices under the service
-//       const allSub = await subService.find({ service: existingService._id });
-//       subServiceIds = allSub.map((sub) => sub._id);
-//     }
+      if (!matchedSub) {
+        return res
+          .status(404)
+          .json({ message: "SubService not found for this service" });
+      }
 
-//     // Step 3: Vendor query build
-//     const vendorQuery = {
-//       subService: { $in: subServiceIds },
-//     };
+      subServiceIds.push(matchedSub._id);
+    } else {
+      // If no type given, fetch all subservices under the service
+      const allSub = await subService.find({ service: existingService._id });
+      subServiceIds = allSub.map((sub) => sub._id);
+    }
 
-//     if (city) {
-//       vendorQuery.city = city;
-//     }
+    // Step 3: Vendor query build
+    const vendorQuery = {
+      subService: { $in: subServiceIds },
+    };
 
-//     const vendors = await vendor.find(vendorQuery).populate("subService");
+    if (city) {
+      vendorQuery.city = city;
+    }
 
-//     return res.status(200).json({
-//       message: "Vendors fetched successfully",
-//       data: vendors,
-//     });
-//   } catch (error) {
-//     console.error("Error fetching vendors:", error);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };
+    console.log("vendorQuery", vendorQuery);
+
+    const vendors = await vendor.find(vendorQuery);
+
+    console.log("vendors", vendors);
+
+    return res.status(200).json({
+      message: "Vendors fetched successfully",
+      data: vendors,
+    });
+  } catch (error) {
+    console.error("Error fetching vendors:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 module.exports = {
   registerVendor,
   getVendors,
   getVendorsBySubService,
-  // getVendorsByService,
+  getVendorsByService,
 };
